@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/sequenceTestScreenName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/sequence_test"
+        android:textSize="24sp"
+        android:textColor="@color/colorAccent"/>
+
+    <TextView
+        android:text=""
+        android:textSize="80sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30sp"
+        android:layout_marginBottom="60sp"
+        android:id="@+id/sequenceNumber" />
+
+    <EditText
+        android:layout_width="80sp"
+        android:layout_height="50sp"
+        android:layout_gravity="center"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:background="@color/carolinaBlue"
+        android:id="@+id/inputAnswer" />
+
+    <Button
+        android:text="@string/check_answer"
+        android:textSize="20sp"
+        android:background="@android:color/darker_gray"
+        android:padding="10sp"
+        android:layout_marginTop="50sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/checkAnswerButton"
+        android:onClick="checkAnswer"/>
+
+    <Button
+        android:text="@string/begin_sequence"
+        android:textSize="20sp"
+        android:background="@android:color/darker_gray"
+        android:padding="10sp"
+        android:layout_marginTop="50sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/beginSequence"
+        android:onClick="beginSequence"/>
+</LinearLayout>

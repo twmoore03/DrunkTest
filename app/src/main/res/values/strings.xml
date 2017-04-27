@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DrunkTest</string>
+    <string name="math_test">Math Test</string>
+    <string name="sequence_test">Sequence Test</string>
+    <string name="balance_test">balance Test</string>
+    <string name="check_answer">Check Answer</string>
+    <string name="begin_sequence">Begin Sequence</string>
+</resources>
