@@ -55,7 +55,10 @@ public class SequenceTest extends AppCompatActivity {
     public void checkAnswer(View view) {
         EditText userInput = (EditText) findViewById(R.id.inputAnswer);
         Editable userAnswer = userInput.getText();
-        int numberInput = Integer.valueOf(userAnswer.toString());
+        int numberInput = 0;
+        if (userAnswer != null) {
+            numberInput = Integer.valueOf(userAnswer.toString());
+        }
 
         // check queue each time, if same pop, if not toast that you failed
         if (numberInput == sequenceQueue.pop()) {
