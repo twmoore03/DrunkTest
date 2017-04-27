@@ -76,6 +76,7 @@ public class SequenceTest extends AppCompatActivity {
 
     public void beginSequence(View view) {
         currentSequenceCount = 0;
+        sequenceQueue.clear();
 
         if (timer != null) {
             timer = null;
