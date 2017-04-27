@@ -35,7 +35,7 @@ public class SequenceTest extends AppCompatActivity {
         sequenceQueue = new ArrayDeque<>();
 
         currentSequenceCount = 0;
-        sequenceLength = 5;
+        sequenceLength = 4;
 
     }
 
