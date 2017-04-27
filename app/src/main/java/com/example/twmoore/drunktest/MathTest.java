@@ -45,18 +45,24 @@ public class MathTest extends AppCompatActivity {
     public void checkAnswer(View view) {
         EditText userInput = (EditText) findViewById(R.id.inputAnswer);
         Editable userAnswer = userInput.getText();
-        int numberInput = Integer.valueOf(userAnswer.toString());
-
-        int answer = calculateCorrectAnswer();
-
-        if (numberInput == answer) {
-            Toast successToast =  Toast.makeText(getApplicationContext(), "You passed 3rd grade!", Toast.LENGTH_LONG);
-            successToast.show();
-            userAnswer.clear();
-            generateRandomMathTest();
+        int numberInput = 0;
+        if (userAnswer == null || userAnswer.toString().equals("")) {
+            Toast emptyToast = Toast.makeText(getApplicationContext(), "Put in an answer!", Toast.LENGTH_SHORT);
+            emptyToast.show();
         } else {
-            Toast failToast = Toast.makeText(getApplicationContext(), "You're Drunk!!", Toast.LENGTH_LONG);
-            failToast.show();
+            numberInput = Integer.valueOf(userAnswer.toString());
+
+            int answer = calculateCorrectAnswer();
+
+            if (numberInput == answer) {
+                Toast successToast =  Toast.makeText(getApplicationContext(), "You passed 3rd grade!", Toast.LENGTH_LONG);
+                successToast.show();
+                userAnswer.clear();
+                generateRandomMathTest();
+            } else {
+                Toast failToast = Toast.makeText(getApplicationContext(), "You're Drunk!!", Toast.LENGTH_LONG);
+                failToast.show();
+            }
         }
     }
 
