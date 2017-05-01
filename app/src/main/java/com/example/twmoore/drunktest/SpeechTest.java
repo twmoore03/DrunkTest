@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
  * Created by twmoore on 4/27/2017.
  */
 
-public class BalanceTest extends AppCompatActivity {
+public class SpeechTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.balance_test);
+        setContentView(R.layout.speech_test);
     }
+
+
 }
