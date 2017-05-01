@@ -40,7 +40,7 @@ public class SequenceTest extends AppCompatActivity {
     }
 
     private void updateSequenceNumber() {
-        int sequenceNumber = getRandomNumber(0, 20);
+        int sequenceNumber = getRandomNumber(0, 10);
         if (sequenceQueue.size() < sequenceLength) {
             sequenceQueue.add(sequenceNumber);
         }
@@ -61,26 +61,28 @@ public class SequenceTest extends AppCompatActivity {
             emptyToast.show();
         } else {
             numberInput = Integer.valueOf(userAnswer.toString());
+            checkQueueForAnswer(numberInput);
 
-            // check queue each time, if same pop, if not toast that you failed
-            if (numberInput == sequenceQueue.pop()) {
-                userAnswer.clear();
-                Toast numbersLeftToast = Toast.makeText(getApplicationContext(),
-                        "You have " + sequenceQueue.size() + " numbers left", Toast.LENGTH_SHORT);
-                numbersLeftToast.show();
-                if (sequenceQueue.size() == 0) {
-                    Toast successToast =  Toast.makeText(getApplicationContext(), "You passed 3rd grade!", Toast.LENGTH_LONG);
-                    successToast.show();
-                }
-            } else {
-                userAnswer.clear();
-                Toast failToast = Toast.makeText(getApplicationContext(), "You're Drunk!!", Toast.LENGTH_LONG);
-                failToast.show();
-            }
+            userAnswer.clear();
         }
+    }
 
+    private void checkQueueForAnswer(int numberInput) {
+        // check queue each time, if same pop, if not toast that you failed
+        if (numberInput == sequenceQueue.pop()) {
+            Toast numbersLeftToast = Toast.makeText(getApplicationContext(),
+                                            "You have " + sequenceQueue.size() +
+                                            " numbers left", Toast.LENGTH_SHORT);
+            numbersLeftToast.show();
 
-
+            if (sequenceQueue.size() == 0) {
+                Toast successToast =  Toast.makeText(getApplicationContext(), "You passed 3rd grade!", Toast.LENGTH_LONG);
+                successToast.show();
+            }
+        } else {
+            Toast failToast = Toast.makeText(getApplicationContext(), "You're Drunk!!", Toast.LENGTH_LONG);
+            failToast.show();
+        }
     }
 
     public void beginSequence(View view) {

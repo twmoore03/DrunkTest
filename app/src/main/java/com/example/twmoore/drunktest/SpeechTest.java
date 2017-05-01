@@ -2,6 +2,7 @@ package com.example.twmoore.drunktest;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 /**
  * Created by twmoore on 4/27/2017.
@@ -13,5 +14,6 @@ public class SpeechTest extends AppCompatActivity {
         setContentView(R.layout.speech_test);
     }
 
-
+    public void startVoiceRecognition(View view) {
+    }
 }
