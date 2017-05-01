@@ -35,34 +35,50 @@ public class SequenceTest extends AppCompatActivity {
         sequenceQueue = new ArrayDeque<>();
 
         currentSequenceCount = 0;
-        sequenceLength = 4;
+        sequenceLength = 7;
 
     }
 
     private void updateSequenceNumber() {
-        int sequenceNumber = getRandomNumber(0, 10);
+        int sequenceNumber = getNewRandomNumber(0, 10);
+
         if (sequenceQueue.size() < sequenceLength) {
             sequenceQueue.add(sequenceNumber);
+            sequenceNumberView.setText(Integer.toString(sequenceNumber));
         }
-        sequenceNumberView.setText(Integer.toString(sequenceNumber));
     }
 
-    private int getRandomNumber(int min, int max) {
+    private int getNewRandomNumber(int min, int max) {
         Random rand = new Random();
-        return rand.nextInt(max) + min;
+        int randomNumber = rand.nextInt(max) + min;
+
+        if (sequenceQueue.size() == 0) {
+            return randomNumber;
+        }
+
+        if (randomNumber != sequenceQueue.peek()) {
+            return randomNumber;
+        } else {
+            return getNewRandomNumber(min, max);
+        }
     }
 
     public void checkAnswer(View view) {
-        EditText userInput = (EditText) findViewById(R.id.inputAnswer);
-        Editable userAnswer = userInput.getText();
-        int numberInput = 0;
+        EditText userEditedText = (EditText) findViewById(R.id.inputAnswer);
+        Editable userAnswer = userEditedText.getText();
+
+        String userInput;
+
         if (userAnswer == null || userAnswer.toString().equals("")) {
             Toast emptyToast = Toast.makeText(getApplicationContext(), "Put in an answer!", Toast.LENGTH_SHORT);
             emptyToast.show();
         } else {
-            numberInput = Integer.valueOf(userAnswer.toString());
-            checkQueueForAnswer(numberInput);
+            userInput = userAnswer.toString();
 
+            for (int i = 0; i < userInput.length(); i++)  {
+                int numberInput = userInput.charAt(i) - '0';
+                checkQueueForAnswer(numberInput);
+            }
             userAnswer.clear();
         }
     }
@@ -70,11 +86,6 @@ public class SequenceTest extends AppCompatActivity {
     private void checkQueueForAnswer(int numberInput) {
         // check queue each time, if same pop, if not toast that you failed
         if (numberInput == sequenceQueue.pop()) {
-            Toast numbersLeftToast = Toast.makeText(getApplicationContext(),
-                                            "You have " + sequenceQueue.size() +
-                                            " numbers left", Toast.LENGTH_SHORT);
-            numbersLeftToast.show();
-
             if (sequenceQueue.size() == 0) {
                 Toast successToast =  Toast.makeText(getApplicationContext(), "You passed 3rd grade!", Toast.LENGTH_LONG);
                 successToast.show();
@@ -102,8 +113,8 @@ public class SequenceTest extends AppCompatActivity {
                     @Override
                     public void run() {
                         updateSequenceNumber();
-                        incrementSequenceCount();
                         sequenceCountCheck();
+                        incrementSequenceCount();
                     }
                 });
             }
@@ -113,13 +124,13 @@ public class SequenceTest extends AppCompatActivity {
     }
 
     private void incrementSequenceCount() {
-        if (currentSequenceCount <= sequenceLength) {
+        if (currentSequenceCount < sequenceLength) {
             currentSequenceCount++;
         }
     }
 
     private void sequenceCountCheck() {
-        if (currentSequenceCount > sequenceLength) {
+        if (currentSequenceCount == sequenceLength) {
             timer.cancel();
             sequenceNumberView.setText("");
         }
