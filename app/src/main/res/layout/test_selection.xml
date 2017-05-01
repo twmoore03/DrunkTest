@@ -50,12 +50,12 @@
             android:onClick="startTest"/>
 
         <Button
-            android:id="@+id/balanceTestButton"
+            android:id="@+id/speechTestButton"
             android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
-            android:text="@string/balance_test"
+            android:text="Speech Test"
             android:background="@color/carolinaBlue"
             android:textSize="15sp"
             android:onClick="startTest"/>

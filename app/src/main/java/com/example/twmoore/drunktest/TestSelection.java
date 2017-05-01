@@ -22,7 +22,7 @@ public class TestSelection extends AppCompatActivity {
             case R.id.sequenceTestButton:
                 startSequenceTest();
                 break;
-            case R.id.balanceTestButton:
+            case R.id.speechTestButton:
                 startBalanceTest();
                 break;
         }
