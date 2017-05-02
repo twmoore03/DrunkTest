@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30sp"
-        android:text="Benny has a giant cock"
+        android:text="There was no ice cream in the freezer, nor did they have money to go to the store."
         android:textSize="22sp"
         android:id="@+id/sentence"/>
 

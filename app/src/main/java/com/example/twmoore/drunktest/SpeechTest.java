@@ -36,7 +36,6 @@ public class SpeechTest extends AppCompatActivity {
         speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        // can add an intent to compare string to something here
 
         try {
                 startActivityForResult(speechIntent, SPEECH_INPUT_CODE);
@@ -56,7 +55,7 @@ public class SpeechTest extends AppCompatActivity {
             String lowerCaseText = speechResults.get(0).toLowerCase();
             userSpeechTextView.setText(lowerCaseText);
 
-            int accuracyFloor = 80;
+            int accuracyFloor = 85;
             if (accuracyPassed(accuracyFloor, lowerCaseText)) {
                 Toast passedToast = Toast.makeText(getApplicationContext(),
                                     "You didn't slur!", Toast.LENGTH_SHORT);

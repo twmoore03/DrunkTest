@@ -7,7 +7,7 @@ android {
         applicationId "com.example.twmoore.drunktest"
         minSdkVersion 24
 
-        targetSdkVersion 25
+        targetSdkVersion 20
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
