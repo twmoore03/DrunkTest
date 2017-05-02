@@ -30,6 +30,19 @@ public class TestSelection extends AppCompatActivity {
         updateTestsPassedView();
     }
 
+    private void resetTests() {
+        testsPassedCount = 0;
+
+        mathTestButton.setBackgroundColor(getResources().getColor(R.color.darkGray));
+        mathTestButton.setEnabled(true);
+
+        sequenceTestButton.setBackgroundColor(getResources().getColor(R.color.darkGray));
+        sequenceTestButton.setEnabled(true);
+
+        speechTestButton.setBackgroundColor(getResources().getColor(R.color.darkGray));
+        speechTestButton.setEnabled(true);
+    }
+
     private void updateTestsPassedView() {
         String testsPassedString = testsPassedCount + "/3 Passed";
         testsPassedTextView.setText(testsPassedString);

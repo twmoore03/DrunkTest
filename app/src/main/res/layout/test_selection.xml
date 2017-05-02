@@ -33,8 +33,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
             android:text="@string/math_test"
-            android:padding="10sp"
             android:textSize="15sp"
+            android:background="@color/darkGray"
             android:onClick="startTest"/>
 
         <Button
@@ -45,6 +45,7 @@
             android:layout_marginTop="20sp"
             android:text="@string/sequence_test"
             android:textSize="15sp"
+            android:background="@color/darkGray"
             android:onClick="startTest"/>
 
         <Button
@@ -55,6 +56,7 @@
             android:layout_marginTop="20sp"
             android:text="Speech Test"
             android:textSize="15sp"
+            android:background="@color/darkGray"
             android:onClick="startTest"/>
     </LinearLayout>
 
