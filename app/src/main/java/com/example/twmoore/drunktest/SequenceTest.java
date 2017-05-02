@@ -35,7 +35,7 @@ public class SequenceTest extends AppCompatActivity {
         sequenceQueue = new ArrayDeque<>();
 
         currentSequenceCount = 0;
-        sequenceLength = 7;
+        sequenceLength = 4;
 
     }
 
@@ -84,15 +84,15 @@ public class SequenceTest extends AppCompatActivity {
     }
 
     private void checkQueueForAnswer(int numberInput) {
-        // check queue each time, if same pop, if not toast that you failed
         if (numberInput == sequenceQueue.pop()) {
             if (sequenceQueue.size() == 0) {
                 setResult(Constants.PASSED_TEST_CODE);
+                finish();
             }
         } else {
             setResult(Constants.FAILED_TEST_CODE);
+            finish();
         }
-        finish();
     }
 
     public void beginSequence(View view) {

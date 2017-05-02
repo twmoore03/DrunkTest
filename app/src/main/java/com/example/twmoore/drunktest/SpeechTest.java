@@ -94,7 +94,6 @@ public class SpeechTest extends AppCompatActivity {
                 sameWordCount++;
             }
         }
-        Log.v("COUNT", Integer.toString(sameWordCount));
         return sameWordCount;
     }
 }

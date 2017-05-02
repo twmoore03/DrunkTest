@@ -5,20 +5,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class TestSelection extends AppCompatActivity {
 
-    private final int MATH_TEST_REQ_CODE = 1;
-    private final int SEQUENCE_TEST_REQ_CODE = 2;
-    private final int SPEECH_TEST_REQ_CODE = 3;
+    private Button mathTestButton;
+    private Button sequenceTestButton;
+    private Button speechTestButton;
 
-    private final int PASSED_TEST_CODE = 1;
-    private final int FAILED_TEST_CODE = -1;
+    private TextView testsPassedTextView;
+    private int testsPassedCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_selection);
+
+        mathTestButton = (Button) findViewById(R.id.mathTestButton);
+        sequenceTestButton = (Button) findViewById(R.id.sequenceTestButton);
+        speechTestButton = (Button) findViewById(R.id.speechTestButton);
+        testsPassedTextView = (TextView) findViewById(R.id.testResultsView);
+        updateTestsPassedView();
+    }
+
+    private void updateTestsPassedView() {
+        String testsPassedString = testsPassedCount + "/3 Passed";
+        testsPassedTextView.setText(testsPassedString);
+    }
+
+    private void incrementTestsPassedCount() {
+        testsPassedCount++;
+        if (testsPassedCount == 3) {
+            setResult(Constants.SUCCESS_RESULT);
+            finish();
+        }
     }
 
     public void startTest(View view) {
@@ -39,38 +60,69 @@ public class TestSelection extends AppCompatActivity {
 
     public void startMathTest() {
         Intent mathTestIntent = new Intent(this, MathTest.class);
-        startActivityForResult(mathTestIntent, MATH_TEST_REQ_CODE);
+        startActivityForResult(mathTestIntent, Constants.MATH_TEST_REQ_CODE);
     }
 
     public void startSequenceTest() {
         Intent sequenceTestIntent = new Intent(this, SequenceTest.class);
-        startActivityForResult(sequenceTestIntent, SEQUENCE_TEST_REQ_CODE);
+        startActivityForResult(sequenceTestIntent, Constants.SEQUENCE_TEST_REQ_CODE);
     }
 
     public void startBalanceTest() {
         Intent balanceTestIntent = new Intent(this, SpeechTest.class);
-        startActivityForResult(balanceTestIntent, SPEECH_TEST_REQ_CODE);
+        startActivityForResult(balanceTestIntent, Constants.SPEECH_TEST_REQ_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch(requestCode) {
             case Constants.MATH_TEST_REQ_CODE:
-                if (resultCode == PASSED_TEST_CODE) {
+                if (resultCode == Constants.PASSED_TEST_CODE) {
                     Log.v("MATH", "SUCCESS");
+                    incrementTestsPassedCount();
+                    updateTestsPassedView();
                 } else {
                     Log.v("MATH", "FAIL");
+                    setResult(Constants.FAILED_TEST_CODE);
+                    finish();
                 }
                 break;
             case Constants.SEQUENCE_TEST_REQ_CODE:
-                if (resultCode == PASSED_TEST_CODE) {
-
+                if (resultCode == Constants.PASSED_TEST_CODE) {
+                    Log.v("SEQ","SUCCESS");
+                    incrementTestsPassedCount();
+                    updateTestsPassedView();
+                } else {
+                    Log.v("SEQ", "FAIL");
+                    setResult(Constants.FAILED_TEST_CODE);
+                    finish();
                 }
                 break;
             case Constants.SPEECH_TEST_REQ_CODE:
-                if (resultCode == PASSED_TEST_CODE) {
-
+                if (resultCode == Constants.PASSED_TEST_CODE) {
+                    Log.v("SPEECH","SUCCESS");
+                    incrementTestsPassedCount();
+                    updateTestsPassedView();
+                } else {
+                    Log.v("SPEECH", "FAIL");
+                    setResult(Constants.FAILED_TEST_CODE);
+                    finish();
                 }
+                break;
+        }
+    }
+
+    private void disableTest(int testCode) {
+        switch(testCode) {
+            case Constants.MATH_TEST_REQ_CODE:
+
+                break;
+            case Constants.SEQUENCE_TEST_REQ_CODE:
+
+                break;
+
+            case Constants.SPEECH_TEST_REQ_CODE:
+
                 break;
         }
     }
