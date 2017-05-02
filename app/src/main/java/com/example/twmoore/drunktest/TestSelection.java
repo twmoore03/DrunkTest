@@ -27,6 +27,9 @@ public class TestSelection extends AppCompatActivity {
         sequenceTestButton = (Button) findViewById(R.id.sequenceTestButton);
         speechTestButton = (Button) findViewById(R.id.speechTestButton);
         testsPassedTextView = (TextView) findViewById(R.id.testResultsView);
+
+        resetTests();
+
         updateTestsPassedView();
     }
 
