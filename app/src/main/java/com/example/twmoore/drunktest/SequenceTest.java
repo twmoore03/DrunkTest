@@ -87,13 +87,12 @@ public class SequenceTest extends AppCompatActivity {
         // check queue each time, if same pop, if not toast that you failed
         if (numberInput == sequenceQueue.pop()) {
             if (sequenceQueue.size() == 0) {
-                Toast successToast =  Toast.makeText(getApplicationContext(), "You passed 3rd grade!", Toast.LENGTH_LONG);
-                successToast.show();
+                setResult(Constants.PASSED_TEST_CODE);
             }
         } else {
-            Toast failToast = Toast.makeText(getApplicationContext(), "You're Drunk!!", Toast.LENGTH_LONG);
-            failToast.show();
+            setResult(Constants.FAILED_TEST_CODE);
         }
+        finish();
     }
 
     public void beginSequence(View view) {

@@ -57,14 +57,11 @@ public class SpeechTest extends AppCompatActivity {
 
             int accuracyFloor = 85;
             if (accuracyPassed(accuracyFloor, lowerCaseText)) {
-                Toast passedToast = Toast.makeText(getApplicationContext(),
-                                    "You didn't slur!", Toast.LENGTH_SHORT);
-                passedToast.show();
+                setResult(Constants.PASSED_TEST_CODE);
             } else {
-                Toast drunkToast = Toast.makeText(getApplicationContext(),
-                                    "You're drunk!", Toast.LENGTH_SHORT);
-                drunkToast.show();
+                setResult(Constants.FAILED_TEST_CODE);
             }
+            finish();
         }
     }
 

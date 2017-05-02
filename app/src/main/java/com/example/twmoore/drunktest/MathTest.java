@@ -59,18 +59,11 @@ public class MathTest extends AppCompatActivity {
             int answer = calculateCorrectAnswer();
 
             if (numberInput == answer) {
-                Toast successToast =  Toast.makeText(getApplicationContext(), "You passed 3rd grade!", Toast.LENGTH_LONG);
-                successToast.show();
-                userAnswer.clear();
-
                 setResult(PASSED_TEST_CODE);
-                finish();
             } else {
-                Toast failToast = Toast.makeText(getApplicationContext(), "You're Drunk!!", Toast.LENGTH_LONG);
-                failToast.show();
                 setResult(FAILED_TEST_CODE);
-                finish();
             }
+            finish();
         }
     }
 

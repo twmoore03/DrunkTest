@@ -55,19 +55,19 @@ public class TestSelection extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch(requestCode) {
-            case MATH_TEST_REQ_CODE:
+            case Constants.MATH_TEST_REQ_CODE:
                 if (resultCode == PASSED_TEST_CODE) {
                     Log.v("MATH", "SUCCESS");
                 } else {
                     Log.v("MATH", "FAIL");
                 }
                 break;
-            case SEQUENCE_TEST_REQ_CODE:
+            case Constants.SEQUENCE_TEST_REQ_CODE:
                 if (resultCode == PASSED_TEST_CODE) {
 
                 }
                 break;
-            case SPEECH_TEST_REQ_CODE:
+            case Constants.SPEECH_TEST_REQ_CODE:
                 if (resultCode == PASSED_TEST_CODE) {
 
                 }
