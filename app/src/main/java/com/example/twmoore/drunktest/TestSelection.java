@@ -1,5 +1,6 @@
 package com.example.twmoore.drunktest;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TestSelection extends AppCompatActivity {
 
     private Button mathTestButton;
     private Button sequenceTestButton;
     private Button speechTestButton;
+    private Context context = TestSelection.this;
 
     private TextView testsPassedTextView;
     private int testsPassedCount = 0;
@@ -147,5 +150,12 @@ public class TestSelection extends AppCompatActivity {
                 speechTestButton.setEnabled(false);
                 break;
         }
+    }
+
+    // Prevents you from going back (Set a timer for this function, could nest functions)
+    @Override
+    public void onBackPressed() {
+        Toast toast = Toast.makeText(context, "You're not allowed to go back!", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

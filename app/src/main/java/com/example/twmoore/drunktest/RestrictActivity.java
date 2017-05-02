@@ -52,6 +52,7 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
     public AddressResultReceiver resultReceiver = new AddressResultReceiver(null);
     private Handler mHandler;
     private String addressOutput;
+    private boolean accessTest = false;
     private boolean openUberLyft = false;
 
 
@@ -64,6 +65,15 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
         if (c == null) {
             c = new GoogleApiClient.Builder(this).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
         }
+
+        TextView headerText = (TextView) findViewById(R.id.headerText);
+        headerText.setText("THINK YOU'RE DRUNK?");
+
+        TextView timerText = (TextView) findViewById(R.id.timerText1);
+        timerText.setText("Don't think so? Take the test to find out!");
+        Button retakeBtn = (Button) findViewById(R.id.retakeTest);
+        retakeBtn.setVisibility(View.VISIBLE);
+        retakeBtn.setText("TAKE DRUNK TEST!");
 
         Button uberButton = (Button) findViewById(R.id.uber);
         Button lyftButton = (Button) findViewById(R.id.lyft);
@@ -79,13 +89,22 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
 
         // Hide navigation bar
         hideNavigation();
-
         // Start timer to retake test
-        retakeCountdown();
+//        retakeCountdown();
     }
 
     public void retakeCountdown() {
+
+        TextView headerText = (TextView) findViewById(R.id.headerText);
+        headerText.setText("YOU'RE DRUNK!!");
+
+
+        Button retakeBtn = (Button) findViewById(R.id.retakeTest);
+        retakeBtn.setVisibility(View.GONE);
+        retakeBtn.setText("RETAKE DRUNK TEST!");
         // Display retake test button after certain time
+        TextView t1 = (TextView) findViewById(R.id.timerText1);
+        t1.setText("You can re-take the test in: ");
         Timer t = new Timer();
         t.schedule(new TimerTask() {
             @Override
@@ -98,10 +117,10 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
                     }
                 });
             }
-        }, 10000);  // Set at display after 10 seconds
+        }, 30000);  // Set at display after 10 seconds
 
 
-        new CountDownTimer(10000, 1000) {
+        new CountDownTimer(30000, 1000) {
             TextView t1 = (TextView) findViewById(R.id.timerText1);
             TextView t2 = (TextView) findViewById(R.id.timerText2);
 
@@ -135,6 +154,7 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
     public void retakeTest(View view) {
         Intent testIntent = new Intent(this, TestSelection.class);    // Change intent here to main screen of app
         startActivityForResult(testIntent, Constants.TEST_SEL_REQ_CODE);
+        accessTest = true;
     }
 
     @Override
@@ -142,6 +162,9 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
         if (requestCode == Constants.TEST_SEL_REQ_CODE) {
             if (resultCode == Constants.SUCCESS_RESULT) {
                 // override lock?
+                TextView headerText = (TextView) findViewById(R.id.headerText);
+                headerText.setTextSize(20);
+                headerText.setText("Okay, you're not drunk \n" +"Here are some helpful resources!");
                 Log.v("TESTS","SUCCESS");
             } else {
                 Log.v("TESTS","FAILED");
@@ -286,8 +309,11 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
                     .getSystemService(Context.ACTIVITY_SERVICE);
 
             activityManager.moveTaskToFront(getTaskId(), 0);
-            Toast toast = Toast.makeText(context, "You're not allowed to exit this app!", Toast.LENGTH_SHORT);
-            toast.show();
+
+            if (accessTest == false) {
+                Toast toast = Toast.makeText(context, "You're not allowed to exit this app!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         } else {
             super.onPause();
             openUberLyft = false;
