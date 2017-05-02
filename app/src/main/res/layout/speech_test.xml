@@ -16,10 +16,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="120sp"
-        android:text="Sentence here"
+        android:layout_marginTop="30sp"
+        android:text="Benny has a giant cock"
         android:textSize="22sp"
         android:id="@+id/sentence"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="120sp"
+        android:text=""
+        android:textSize="22sp"
+        android:id="@+id/userVoiceInput"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

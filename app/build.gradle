@@ -5,7 +5,8 @@ android {
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.example.twmoore.drunktest"
-        minSdkVersion 15
+        minSdkVersion 24
+
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
