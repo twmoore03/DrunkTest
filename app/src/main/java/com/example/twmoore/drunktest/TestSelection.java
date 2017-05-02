@@ -75,17 +75,17 @@ public class TestSelection extends AppCompatActivity {
 
     }
 
-    public void startMathTest() {
+    private void startMathTest() {
         Intent mathTestIntent = new Intent(this, MathTest.class);
         startActivityForResult(mathTestIntent, Constants.MATH_TEST_REQ_CODE);
     }
 
-    public void startSequenceTest() {
+    private void startSequenceTest() {
         Intent sequenceTestIntent = new Intent(this, SequenceTest.class);
         startActivityForResult(sequenceTestIntent, Constants.SEQUENCE_TEST_REQ_CODE);
     }
 
-    public void startBalanceTest() {
+    private void startBalanceTest() {
         Intent balanceTestIntent = new Intent(this, SpeechTest.class);
         startActivityForResult(balanceTestIntent, Constants.SPEECH_TEST_REQ_CODE);
     }

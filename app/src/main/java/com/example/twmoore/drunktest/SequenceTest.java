@@ -26,16 +26,23 @@ public class SequenceTest extends AppCompatActivity {
     private int currentSequenceCount;
     private int sequenceLength;
 
+    private EditText userEditedText;
+    private int lastRandomNumber;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sequence_test);
 
         sequenceNumberView = (TextView) findViewById(R.id.sequenceNumber);
+        userEditedText = (EditText) findViewById(R.id.inputAnswer);
+
         sequenceQueue = new ArrayDeque<>();
 
         currentSequenceCount = 0;
-        sequenceLength = 4;
+        sequenceLength = 5;
+
+        userEditedText.setEnabled(false);
 
     }
 
@@ -53,10 +60,12 @@ public class SequenceTest extends AppCompatActivity {
         int randomNumber = rand.nextInt(max) + min;
 
         if (sequenceQueue.size() == 0) {
+            lastRandomNumber = randomNumber;
             return randomNumber;
         }
 
-        if (randomNumber != sequenceQueue.peek()) {
+        if (randomNumber != lastRandomNumber) {
+            lastRandomNumber = randomNumber;
             return randomNumber;
         } else {
             return getNewRandomNumber(min, max);
@@ -64,7 +73,6 @@ public class SequenceTest extends AppCompatActivity {
     }
 
     public void checkAnswer(View view) {
-        EditText userEditedText = (EditText) findViewById(R.id.inputAnswer);
         Editable userAnswer = userEditedText.getText();
 
         String userInput;
@@ -99,6 +107,9 @@ public class SequenceTest extends AppCompatActivity {
         currentSequenceCount = 0;
         sequenceQueue.clear();
 
+        userEditedText.setEnabled(false);
+
+
         if (timer != null) {
             timer = null;
         }
@@ -132,6 +143,7 @@ public class SequenceTest extends AppCompatActivity {
         if (currentSequenceCount == sequenceLength) {
             timer.cancel();
             sequenceNumberView.setText("");
+            userEditedText.setEnabled(true);
         }
     }
 

@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestrictActivity">
+        <activity android:name=".TestSelection">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +30,7 @@
         <service
             android:name=".FetchAddressIntentService"
             android:exported="false"/>
-        <activity android:name=".TestSelection" />
+        <activity android:name=".RestrictActivity" />
         <activity android:name=".SpeechTest"></activity>
     </application>
 
