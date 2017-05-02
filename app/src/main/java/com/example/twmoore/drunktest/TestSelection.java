@@ -1,6 +1,7 @@
 package com.example.twmoore.drunktest;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -81,6 +82,7 @@ public class TestSelection extends AppCompatActivity {
                     Log.v("MATH", "SUCCESS");
                     incrementTestsPassedCount();
                     updateTestsPassedView();
+                    disableTest(Constants.MATH_TEST_REQ_CODE);
                 } else {
                     Log.v("MATH", "FAIL");
                     setResult(Constants.FAILED_TEST_CODE);
@@ -92,6 +94,7 @@ public class TestSelection extends AppCompatActivity {
                     Log.v("SEQ","SUCCESS");
                     incrementTestsPassedCount();
                     updateTestsPassedView();
+                    disableTest(Constants.SEQUENCE_TEST_REQ_CODE);
                 } else {
                     Log.v("SEQ", "FAIL");
                     setResult(Constants.FAILED_TEST_CODE);
@@ -103,6 +106,7 @@ public class TestSelection extends AppCompatActivity {
                     Log.v("SPEECH","SUCCESS");
                     incrementTestsPassedCount();
                     updateTestsPassedView();
+                    disableTest(Constants.SPEECH_TEST_REQ_CODE);
                 } else {
                     Log.v("SPEECH", "FAIL");
                     setResult(Constants.FAILED_TEST_CODE);
@@ -115,14 +119,16 @@ public class TestSelection extends AppCompatActivity {
     private void disableTest(int testCode) {
         switch(testCode) {
             case Constants.MATH_TEST_REQ_CODE:
-
+                mathTestButton.setBackgroundColor(Color.GREEN);
+                mathTestButton.setEnabled(false);
                 break;
             case Constants.SEQUENCE_TEST_REQ_CODE:
-
+                sequenceTestButton.setBackgroundColor(Color.GREEN);
+                sequenceTestButton.setEnabled(false);
                 break;
-
             case Constants.SPEECH_TEST_REQ_CODE:
-
+                speechTestButton.setBackgroundColor(Color.GREEN);
+                speechTestButton.setEnabled(false);
                 break;
         }
     }

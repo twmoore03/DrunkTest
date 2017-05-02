@@ -15,6 +15,7 @@ public class Constants {
     public static final String LOCATION_DATA_EXTRA = PACKAGE_NAME +
             ".LOCATION_DATA_EXTRA";
 
+    public static final int TEST_SEL_REQ_CODE = 0;
     public static final int MATH_TEST_REQ_CODE = 1;
     public static final int SEQUENCE_TEST_REQ_CODE = 2;
     public static final int SPEECH_TEST_REQ_CODE = 3;

@@ -133,8 +133,21 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
     }
 
     public void retakeTest(View view) {
-//        Intent i = new Intent(this, MainActivity.class);    // Change intent here to main screen of app
-//        startActivity(i);
+        Intent testIntent = new Intent(this, TestSelection.class);    // Change intent here to main screen of app
+        startActivityForResult(testIntent, Constants.TEST_SEL_REQ_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.TEST_SEL_REQ_CODE) {
+            if (resultCode == Constants.SUCCESS_RESULT) {
+                // override lock?
+                Log.v("TESTS","SUCCESS");
+            } else {
+                Log.v("TESTS","FAILED");
+                retakeCountdown();
+            }
+        }
     }
 
 

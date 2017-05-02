@@ -34,7 +34,6 @@
             android:layout_marginTop="20sp"
             android:text="@string/math_test"
             android:padding="10sp"
-            android:background="@color/carolinaBlue"
             android:textSize="15sp"
             android:onClick="startTest"/>
 
@@ -45,7 +44,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
             android:text="@string/sequence_test"
-            android:background="@color/carolinaBlue"
             android:textSize="15sp"
             android:onClick="startTest"/>
 
@@ -56,7 +54,6 @@
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
             android:text="Speech Test"
-            android:background="@color/carolinaBlue"
             android:textSize="15sp"
             android:onClick="startTest"/>
     </LinearLayout>
