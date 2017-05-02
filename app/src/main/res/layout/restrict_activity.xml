@@ -6,11 +6,10 @@
     <TextView
         android:id="@+id/headerText"
         android:layout_width="wrap_content"
-        android:paddingTop="10dp"
+        android:paddingTop="50dp"
         android:paddingRight="20dp"
         android:paddingLeft="20dp"
         android:textSize="25dp"
-        android:lines="2"
         android:textColor="@android:color/black"
         android:layout_gravity="center_horizontal"
         android:gravity="center"

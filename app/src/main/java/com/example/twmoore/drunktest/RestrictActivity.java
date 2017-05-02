@@ -26,6 +26,7 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,9 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
     private String addressOutput;
     private boolean accessTest = false;
     private boolean openUberLyft = false;
+    private boolean passed = false;
+    private View decorView;
+
 
 
     @Override
@@ -61,7 +65,7 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.restrict_activity);
         mHandler = new Handler();
-
+        decorView = getWindow().getDecorView();
         if (c == null) {
             c = new GoogleApiClient.Builder(this).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
         }
@@ -94,7 +98,7 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
     }
 
     public void retakeCountdown() {
-
+        hideNavigation();
         TextView headerText = (TextView) findViewById(R.id.headerText);
         headerText.setText("YOU'RE DRUNK!!");
 
@@ -138,11 +142,10 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
     @Override
     protected void onResume() {
         super.onResume();
-        hideNavigation();
+//        hideNavigation();
     }
 
     public void hideNavigation() {
-        View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -161,10 +164,22 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.TEST_SEL_REQ_CODE) {
             if (resultCode == Constants.SUCCESS_RESULT) {
-                // override lock?
+                // override lock
+                passed = true;
                 TextView headerText = (TextView) findViewById(R.id.headerText);
-                headerText.setTextSize(20);
-                headerText.setText("Okay, you're not drunk \n" +"Here are some helpful resources!");
+                headerText.setTextSize(18);
+                headerText.setText("Okay, you're not drunk, you can exit!");
+
+                Button retakeBtn = (Button) findViewById(R.id.retakeTest);
+                retakeBtn.setVisibility(View.GONE);
+
+                TextView timerText = (TextView) findViewById(R.id.timerText1);
+                timerText.setText("");
+
+                TextView timerText2 = (TextView) findViewById(R.id.timerText2);
+                timerText2.setText("");
+                decorView.setSystemUiVisibility(
+                                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
                 Log.v("TESTS","SUCCESS");
             } else {
                 Log.v("TESTS","FAILED");
@@ -294,8 +309,10 @@ public class RestrictActivity extends AppCompatActivity implements GoogleApiClie
     // Prevents you from going back (Set a timer for this function, could nest functions)
     @Override
     public void onBackPressed() {
-        Toast toast = Toast.makeText(context, "You're not allowed to exit this app!", Toast.LENGTH_SHORT);
-        toast.show();
+        if (passed == false) {
+            Toast toast = Toast.makeText(context, "You're not allowed to exit this app!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 
