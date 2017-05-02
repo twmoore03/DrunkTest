@@ -1,5 +1,6 @@
 package com.example.twmoore.drunktest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -18,6 +19,9 @@ public class MathTest extends AppCompatActivity {
 
     private TextView firstNumber;
     private TextView secondNumber;
+
+    private final int PASSED_TEST_CODE = 1;
+    private final int FAILED_TEST_CODE = -1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +62,14 @@ public class MathTest extends AppCompatActivity {
                 Toast successToast =  Toast.makeText(getApplicationContext(), "You passed 3rd grade!", Toast.LENGTH_LONG);
                 successToast.show();
                 userAnswer.clear();
-                generateRandomMathTest();
+
+                setResult(PASSED_TEST_CODE);
+                finish();
             } else {
                 Toast failToast = Toast.makeText(getApplicationContext(), "You're Drunk!!", Toast.LENGTH_LONG);
                 failToast.show();
+                setResult(FAILED_TEST_CODE);
+                finish();
             }
         }
     }

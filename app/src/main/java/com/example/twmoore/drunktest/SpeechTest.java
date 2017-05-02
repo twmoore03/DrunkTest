@@ -73,7 +73,8 @@ public class SpeechTest extends AppCompatActivity {
             return false;
         }
         String lowerCaseSentenceText = sentenceTextView.getText().toString().toLowerCase();
-        String[] sentenceWords = lowerCaseSentenceText.split(" ");
+
+        String[] sentenceWords = lowerCaseSentenceText.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
 
         int sameWordCount = countSameWords(sentenceWords, speechText);
         int sentenceLength = sentenceWords.length;
